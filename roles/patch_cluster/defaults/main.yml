@@ -29,8 +29,8 @@ manifest_templates_for_mode:
     - template: 50-worker-remove-ipi-leftovers.yml.j2
   full:
     - template: 50-worker-nm-fix-ipv6.yml.j2
-    - template: 50-worker-remove-ipi-leftovers.yml.j2
-    - template: 02-fix-ingress-config.yml.j2
+    #- template: 50-worker-remove-ipi-leftovers.yml.j2
+    #- template: 02-fix-ingress-config.yml.j2
 
 default_manifests: "{{ manifest_templates_for_mode[high_availability_mode] }}"
 extra_manifests: []
