@@ -12,6 +12,13 @@
   environment:
     XDG_RUNTIME_DIR: "{{ config_file_path }}"
 
+- name: Get discovery iso from bastion host
+  ansible.builtin.fetch:
+    src: "{{ manifests_dir }}/agent.{{ arch }}.iso"
+    dest: "/tmp/agent.{{ arch }}.iso"
+    flat: true
+    mode: 0644
+
 - name: Put discovery iso in http store
   delegate_to: http_store
   become: true
@@ -24,6 +31,6 @@
 
     - name: Copy agent iso to discovery directory
       ansible.builtin.copy:
-        src: "{{ manifests_dir }}/agent.{{ arch }}.iso"
+        src: "/tmp/agent.{{ arch }}.iso"
         dest: "{{ download_dest_path }}/{{ download_agent_dest_file }}"
         mode: 0644
